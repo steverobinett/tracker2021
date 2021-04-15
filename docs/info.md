@@ -11,4 +11,4 @@ Images are treated as binary for version control. If an image is changed and com
 
 ### Draw.io (diagrams.net)
 draw.io files have been converted to .svg. You can open these in your browser to view. 
-To edit, open them in draw.io, make your changes and save as usual, but do not save or commit to any other format than .svg.
+To edit, open them in draw.io, make your changes and save as usual, but do not save or commit to any format other than .svg.
