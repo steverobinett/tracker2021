@@ -14,7 +14,8 @@
         }
 
         $userEmail = $_POST['userEmail'];
-        $userPass = password_hash($_POST['password1'], PASSWORD_DEFAULT);
+        // $userPass = password_hash($_POST['password1'], PASSWORD_DEFAULT);
+        $userPass = sha1($_POST['password1'], false);
         $userFirst = $_POST['userFirst'];
         $userLast = $_POST['userLast'];
         $userRole = $_POST['userRole'];

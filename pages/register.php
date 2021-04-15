@@ -47,7 +47,6 @@
         $emailQuery = 'SELECT userEmail
                         FROM USER;';
         $emailResult = $conn->query($emailQuery);
-        var_dump($emailResult);
         while($row = $emailResult->fetch_array()) {
             $emails[] = $row;
         }

@@ -51,7 +51,7 @@ function passwordValidate(pass1, pass2) {
     var errDiv2 = document.getElementById("pass2Error");
     var pass1Box = document.getElementById("password1");
     var pass2Box = document.getElementById("password2");
-    var re = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
+    var re = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
     var valid = false;
     if(pass1 == "" || pass2 == "") {
         for(var x = 0; x < 2; x++) {
