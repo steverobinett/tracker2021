@@ -11,6 +11,6 @@
         <input type="text" name="isbnField" id="isbnField"><br>
         <input type="button" id="button" value="Submit">
     </form>
-    <script src="../js/callBook.js"></script>
+    <script src="../js/ajaxCall.js"></script>
 </body>
 </html>

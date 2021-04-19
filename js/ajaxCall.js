@@ -1,9 +1,12 @@
-getTxtBook(9780323523424);
+button = document.getElementById("button");
+button.addEventListener("click", getTxtBook);
 
-function getTxtBook(isbn){
+function getTxtBook(){
+    field = document.getElementById("isbnField").value;
     // 1 make request object
     const xhr = new XMLHttpRequest();
-    var uri = "https://openlibrary.org/isbn/" + isbn + ".json";
+    console.log(field);
+    var uri = "https://cors-anywhere.herokuapp.com/https://openlibrary.org/isbn/" + field + ".json";
     
     // 2 open the request
     xhr.open("GET",uri,true);
@@ -14,7 +17,7 @@ function getTxtBook(isbn){
 
             //TxtData is the JSON object. 
             var TxtData = JSON.parse(this.responseText);
-
+            console.log(TxtData);
             // parse out array of authors from txt data and save it in authors var
             authors = TxtData['authors'];
 
@@ -53,10 +56,12 @@ function getAuthor(authors){
                 var name = authorData.name;
 
                 //change inner html by adding multiple authors into one string.
-                document.getElementById('output').innerHTML = document.getElementById('output').innerHTML + name + " , ";
+                // document.getElementById('output').innerHTML = document.getElementById('output').innerHTML + name + " , ";
             }
             
         };
         
         xhr.send();
 }
+
+
