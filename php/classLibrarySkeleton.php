@@ -1,3 +1,5 @@
+<?php
+
 class User {
     public $email;
     private $first;
@@ -41,7 +43,7 @@ class Course {
     public $required;
     public $usenew;
 
-    public function __construct($prefix; $number; $section; $term; $enrollment; $dept; $faculty; $required; $usenew) {
+    public function __construct($prefix, $number, $section, $term, $enrollment, $dept, $faculty, $required, $usenew) {
         $this->prefix = $prefix;
         $this->number = $number;
         $this->section = $section;
@@ -99,3 +101,5 @@ class Faculty {
         $this->last = $last;
     }
 }
+
+?>
