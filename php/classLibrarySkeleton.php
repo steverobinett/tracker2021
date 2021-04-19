@@ -1,3 +1,5 @@
+<?php
+
 class User {
     public $email;
     private $first;
@@ -99,3 +101,5 @@ class Faculty {
         $this->last = $last;
     }
 }
+
+?>
