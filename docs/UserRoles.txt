@@ -1,0 +1,12 @@
+﻿Table Name ROLE
+userId / roleDesc
+1      / UberAdmin
+2     / Faculty
+3     / Viewer
+-------------------------------------------------------------------------------------------------------------
+UberAdmin:	UberAdmin can do everything that the application can do. This is our admin user.
+Faculty: 	Faculty users will not have admin control. They will be able to add textbooks and assign them to courses. 
+Viewer: 	Viewer will not be able to add textbooks or assign them to courses. This role can only view textbooks and courses.
+-------------------------------------------------------------------------------------------------------------
+When registering your account, the user will have to choose their role of Faculty or Viewer. 
+UberAdmins will need to be added into database by dev team.

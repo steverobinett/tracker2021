@@ -1,0 +1,10 @@
+﻿Database Tables: upper case
+Ex. USER
+
+Database Attributes: lower initial, camel case
+Ex. userEmail
+
+PHP Forms: lower initial, camel case
+Ex. firstName, lastName, password
+
+

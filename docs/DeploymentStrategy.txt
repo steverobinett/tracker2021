@@ -1,0 +1,15 @@
+﻿NOTES:
+    1. We will deploy our code to the server using FTP, not by using the file manager.
+    2. The default permissions on the files should not interfere with anything we need to do.
+    3. The day after every sprint we should deploy the code to the server.
+Plan for deploying code to Server
+    1. Merge current sprint branch into main branch. {GIT}
+    2. Do a pull on main to make sure you have the latest version.
+    3. Use the push ftp account to upload files.
+        a. Host Name: ftp.stevenrobinett.com
+        b.  Port: 21
+        c.  User: push@stevenrobinett.com
+        d. Password: csci2021PUSH!
+    4. The destination dir is “public_html/dev”
+    5. When you connect using the push ftp account you should be sitting in the directory stated above.
+    6. Drag and drop the landing page, all root level documents and sub-folders from the main git branch into this directory. { public_html/dev}
