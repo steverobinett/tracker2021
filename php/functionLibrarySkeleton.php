@@ -1,3 +1,5 @@
+<?php
+
 SelectSingleTextbook($isbn) {
 
 }
@@ -66,3 +68,4 @@ SelectAllFaculty() {
 
 }
 
+?>
