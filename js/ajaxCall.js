@@ -1,12 +1,21 @@
-button = document.getElementById("button");
-button.addEventListener("click", getTxtBook);
+// OL7353617M 9780140328721 testing ISBN numbers
+
+window.addEventListener("load", pageSetup, false);
+
+
+function pageSetup() {
+    //adds listeners and hides form details until ISBN success
+    var button = document.getElementById("findButton");
+    button.addEventListener("click", ISBNValidate, false);
+    var form = document.getElementById("textDetailForm");
+    form.style.display = "none";
+}
 
 function getTxtBook(){
-    field = document.getElementById("isbnField").value;
+    var field = document.getElementById("isbnField").value;
     // 1 make request object
     const xhr = new XMLHttpRequest();
-    console.log(field);
-    var uri = "https://cors-anywhere.herokuapp.com/https://openlibrary.org/isbn/" + field + ".json";
+    var uri = "https://openlibrary.org/isbn/" + field + ".json";
     
     // 2 open the request
     xhr.open("GET",uri,true);
@@ -17,9 +26,8 @@ function getTxtBook(){
 
             //TxtData is the JSON object. 
             var TxtData = JSON.parse(this.responseText);
-            console.log(TxtData);
             // parse out array of authors from txt data and save it in authors var
-            authors = TxtData['authors'];
+            var authors = TxtData['authors'];
 
             //parse out json from TxtData and put it into form
 
@@ -27,6 +35,9 @@ function getTxtBook(){
             for(x=0; x < authors.length; x++){
                 getAuthor(authors[x].key);
             }
+            // displays form and data upon success
+            processJSON(TxtData);
+            showForm();
 
         }
         
@@ -55,8 +66,15 @@ function getAuthor(authors){
                 // author name is parsed out from authorData and saved into the name var
                 var name = authorData.name;
 
-                //change inner html by adding multiple authors into one string.
-                // document.getElementById('output').innerHTML = document.getElementById('output').innerHTML + name + " , ";
+                //change value by adding multiple authors into one string.
+                var author = document.getElementById('authorField');
+                if (author.value != "") {
+                    author.value = author.value + ", " + name;
+                }
+                else {
+                    author.value = name;
+                }
+                
             }
             
         };
@@ -64,4 +82,21 @@ function getAuthor(authors){
         xhr.send();
 }
 
+function processJSON(jsonStr) {
+    // Sets parse data into fields for submission
+    var isbn = document.getElementById("isbnField2");
+    var title = document.getElementById("titleField");
+    var edition = document.getElementById("editionField");
+    var publisher = document.getElementById("publisherField");
+    isbn.value = document.getElementById("isbnField").value;
+    title.value = jsonStr.title;
+    edition.value = jsonStr.type.key;
+    publisher.value = jsonStr.publishers[0];
+}
 
+function showForm() {
+    // Displays the more detailed form after a succesful ISBN uri
+    var form = document.getElementById("textDetailForm");
+    form.style.display = "block";
+
+}
