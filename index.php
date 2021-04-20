@@ -26,6 +26,7 @@
     </div>
 
     <?php
+    // Allows SESSION varaibles to be called in JS, may be a better way but it works ftm
         echo '<input type="hidden" id="userFirst" value="'.$_SESSION['userFirst'].'">';
         echo '<input type="hidden" id="sessionCreate" value="'.$_SESSION['createSuccess'].'">';
         echo '<input type="hidden" id="sessionReturn" value="'.$_SESSION['returnSuccess'].'">';
