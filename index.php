@@ -1,5 +1,12 @@
 <?php
     session_start();
+    if(!isset($_SESSION["userFirst"])) {
+        //if user is not logged in
+        header('Location: http://dev.stevenrobinett.com/pages/login.html');
+    } else {
+        //Load Page
+        echo "Welcome ". $_SESSION['userFirst']. ", you are logged in.";
+    }
 ?>
 
 <!DOCTYPE html>
