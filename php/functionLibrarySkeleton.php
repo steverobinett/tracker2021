@@ -1,70 +1,92 @@
 <?php
 
-SelectSingleTextbook($isbn) {
+function SelectSingleTextbook($isbn) {
+    return null;
+}
+
+function SelectManyTextbook($author = NULL, $publisher = NULL) {
+    return null;
+}
+
+function SelectAllTextbook($db) {
+    $Courses = [];
+
+    $query = "SELECT * FROM `TEXTBOOK`";
+
+    $result = $db->query($query);
+
+    while($row = $result->fetch_array()) {
+        $Courses[] = $row;
+    }
+
+    return $Courses;
+}
+
+function SelectSingleCoursetextbook($faculty = NULL, $prefix = NULL, $number = NULL) {
 
 }
 
-SelectManyTextbook($author = NULL, $publisher = NULL) {
+function SelectManyCoursetextbook($faculty = NULL, $prefix = NULL, $number = NULL) {
 
 }
 
-SelectAllTextbook() {
+function SelectAllCoursetextbook() {
 
 }
 
-SelectSingleCoursetextbook($faculty = NULL, $prefix = NULL, $number = NULL) {
+function SelectSingleCourse($prefix, $number, $section, $term) {
 
 }
 
-SelectManyCoursetextbook($faculty = NULL, $prefix = NULL, $number = NULL) {
+function SelectManyCourse($faculty = NULL, $prefix = NULL, $number = null) {
 
 }
 
-SelectAllCoursetextbook() {
+function SelectAllCourse($db) {
+
+    $Courses = [];
+
+    $query = "SELECT * FROM `COURSE`";
+    
+    $result = $db->query($query);
+
+    while($row = $result->fetch_array()) {
+        $Courses[] = $row;
+    }
+
+    return $Courses;
 
 }
 
-SelectSingleCourse($prefix, $number, $section, $term) {
+function SelectSingleTerm($year, $semester) {
 
 }
 
-SelectManyCourse($faculty = NULL, $prefix = NULL, $number = null) {
+function SelectManyTerm($year = NULL, $semester = NULL) {
 
 }
 
-SelectAllCourse() {
+function SelectAllTerm() {
 
 }
 
-SelectSingleTerm($year, $semester) {
+function SelectSingleDepartment($dept) {
 
 }
 
-SelectManyTerm($year = NULL, $semester = NULL) {
+function SelectAllDepartment() {
 
 }
 
-SelectAllTerm() {
+function SelectSingleFaculty($first = NULL, $last = NULL) {
 
 }
 
-SelectSingleDepartment($dept) {
+function SelectManyFaculty($prefix = NULL, $number = NULL) {
 
 }
 
-SelectAllDepartment() {
-
-}
-
-SelectSingleFaculty($first = NULL, $last = NULL) {
-
-}
-
-SelectManyFaculty($prefix = NULL, $number = NULL) {
-
-}
-
-SelectAllFaculty() {
+function SelectAllFaculty() {
 
 }
 
