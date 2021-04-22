@@ -90,6 +90,13 @@ function SelectAllFaculty() {
 
 }
 
+function InsertIntoCourseTextbook($prefix,$courseNum,$courseSec,$courseTerm,$isbn,$dest = NULL){
+    echo $prefix;
+    echo $courseNum;
+    echo $courseSec;
+    echo $courseTerm;
+    echo $isbn;
+    
 function insertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
     $conn = getConnection();
     $query = "INSERT INTO TEXTBOOK VALUES (?, ?, ?, ?, ?, ?)";
