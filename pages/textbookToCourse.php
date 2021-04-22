@@ -1,6 +1,6 @@
 <?php
-require ("../db/functionLibrarySkeleton.php");
-require ("../db/dbConnect.php");
+include ("../db/functionLibrarySkeleton.php");
+include ("../db/dbConnect.php");
 echo "<h1>Welcome to my page </h1>";
 $conn = getConnection();
 $txtBook = SelectAllTextbook($conn);
