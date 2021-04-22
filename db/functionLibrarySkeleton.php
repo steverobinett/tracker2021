@@ -90,4 +90,12 @@ function SelectAllFaculty() {
 
 }
 
+function InsertIntoCourseTextbook($prefix,$courseNum,$courseSec,$courseTerm,$isbn,$dest = NULL){
+    echo $prefix;
+    echo $courseNum;
+    echo $courseSec;
+    echo $courseTerm;
+    echo $isbn;
+}
+
 ?>
