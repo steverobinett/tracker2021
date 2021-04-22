@@ -10,10 +10,3 @@ function getConnection() {
         exit();
 }
 
-function insertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
-    $conn = getConnection();
-    $query = "INSERT INTO TEXTBOOK VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssssss', $isbn, $title, $author, $edition, $publisher, $format);
-    $result = $stmt->execute() or trigger_error("Failed to add textbook to the database. Error: ".$conn->error);
-}
