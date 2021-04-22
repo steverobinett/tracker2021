@@ -66,8 +66,12 @@ function SelectManyTerm($year = NULL, $semester = NULL) {
 
 }
 
-function SelectAllTerm() {
-
+function SelectAllTerm($conn) {
+    $query = "SELECT TERM.termID, CONCAT(TERM.termSem, ' ',TERM.termYear) FROM TERM ORDER BY 1";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $stmt->store_result();
+    return $stmt;
 }
 
 function SelectSingleDepartment($dept) {
@@ -96,8 +100,9 @@ function InsertIntoCourseTextbook($prefix,$courseNum,$courseSec,$courseTerm,$isb
     echo $courseSec;
     echo $courseTerm;
     echo $isbn;
-    
-function insertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
+}
+
+function InsertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
     $conn = getConnection();
     $query = "INSERT INTO TEXTBOOK VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
