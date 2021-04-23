@@ -1,5 +1,6 @@
 <?php
 
+
 function SelectSingleTextbook($isbn) {
     return null;
 }
@@ -18,6 +19,7 @@ function SelectAllTextbook($db) {
     while($row = $result->fetch_array()) {
         $Courses[] = $row;
     }
+
 
     return $Courses;
 }
@@ -94,12 +96,14 @@ function SelectAllFaculty() {
 
 }
 
-function InsertIntoCourseTextbook($prefix,$courseNum,$courseSec,$courseTerm,$isbn,$dest = NULL){
-    echo $prefix;
-    echo $courseNum;
-    echo $courseSec;
-    echo $courseTerm;
-    echo $isbn;
+function InsertIntoCourseTextbook($db, $isbn , $prefix , $courseNum , $courseSec , $courseTerm , $Req = NULL , $useNew = NULL){
+
+    $query = "INSERT INTO COURSETEXTBOOK (ctISBN, ctPrefix,ctNumber,ctSection,ctTerm,ctRequired,ctUseNew) VALUES (?, ?, ?, ?, ?,?,?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ssssiii', $isbn, $prefix, $courseNum,  $courseSec, $courseTerm,$Req,$useNew);
+
+    $result = $stmt->execute();
+
 }
 
 function InsertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
@@ -110,4 +114,3 @@ function InsertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
     $result = $stmt->execute() or trigger_error("Failed to add textbook to the database. Error: ".$conn->error);
 }
 
-?>

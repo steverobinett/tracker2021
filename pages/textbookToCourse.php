@@ -1,12 +1,13 @@
 <?php
-include ("../db/functionLibrarySkeleton.php");
-include ("../db/dbConnect.php");
-echo "<h1>Welcome to my page </h1>";
-$conn = getConnection();
-$txtBook = SelectAllTextbook($conn);
-$courses = SelectAllCourse($conn);
-?>
+include "../db/dbConnect.php";
+include "../db/functionLibrarySkeleton.php";
 
+echo "<h1>Welcome to my page </h1>";
+$db = getConnection();
+$txtBook = SelectAllTextbook($db);
+$courses = SelectAllCourse($db);
+
+?>
 
 <form action="../php/addTextCourse.php" method="POST">
 
@@ -25,7 +26,7 @@ $courses = SelectAllCourse($conn);
     <select name="course">
         <?php 
             foreach($courses as $x){
-                echo "<option  value=" . $x['coursePrefix'] .",".  $x['courseNumber'] . "," . $x['courseSection'] . "," . $x['courseTerm'] . "," . $x['courseEnrollment'] . "," . $x['courseDept'] . "," . $x['courseFaculty'] . ">" . $x['coursePrefix'] .  $x['courseNumber'] . ", Section:" . $x['courseSection'] . ", Term:" . $x['courseTerm'] . "</option>";
+                echo "<option  value=" . $x['coursePrefix'] .",".  $x['courseNumber'] . "," . $x['courseSection'] . "," . $x['courseTerm'] .">" . $x['coursePrefix'] .  $x['courseNumber'] . ", Section:" . $x['courseSection'] . ", Term:" . $x['courseTerm'] . "</option>";
             }
         ?>
     </select>
