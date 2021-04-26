@@ -3,3 +3,6 @@ form{
     width: 65%;
 }
 
+.no-display {
+    display:none;
+}
