@@ -37,6 +37,7 @@ function SelectAllTextbook($db) {
         $Courses[] = $row;
     }
 
+
     return $Courses;
 }
 
@@ -84,8 +85,12 @@ function SelectManyTerm($year = NULL, $semester = NULL) {
 
 }
 
-function SelectAllTerm() {
-
+function SelectAllTerm($conn) {
+    $query = "SELECT TERM.termID, CONCAT(TERM.termSem, ' ',TERM.termYear) FROM TERM ORDER BY 1";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $stmt->store_result();
+    return $stmt;
 }
 
 function SelectSingleDepartment($dept) {
@@ -108,4 +113,21 @@ function SelectAllFaculty() {
 
 }
 
-?>
+function InsertIntoCourseTextbook($db, $isbn , $prefix , $courseNum , $courseSec , $courseTerm , $Req = NULL , $useNew = NULL){
+
+    $query = "INSERT INTO COURSETEXTBOOK (ctISBN, ctPrefix,ctNumber,ctSection,ctTerm,ctRequired,ctUseNew) VALUES (?, ?, ?, ?, ?,?,?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ssssiii', $isbn, $prefix, $courseNum,  $courseSec, $courseTerm,$Req,$useNew);
+
+    $result = $stmt->execute();
+
+}
+
+function InsertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
+    $conn = getConnection();
+    $query = "INSERT INTO TEXTBOOK VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ssssss', $isbn, $title, $author, $edition, $publisher, $format);
+    $result = $stmt->execute() or trigger_error("Failed to add textbook to the database. Error: ".$conn->error);
+}
+

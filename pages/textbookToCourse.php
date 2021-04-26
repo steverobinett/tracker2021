@@ -1,21 +1,22 @@
 <?php
-include ("../php/functionLibrarySkeleton.php");
-include ("../db/dbFunctionsphp.php");
+include "../db/dbConnect.php";
+include "../db/functionLibrarySkeleton.php";
+
 echo "<h1>Welcome to my page </h1>";
-$conn = getConnection();
-$txtBook = SelectAllTextbook($conn);
-$courses = SelectAllCourse($conn);
+$db = getConnection();
+$txtBook = SelectAllTextbook($db);
+$courses = SelectAllCourse($db);
+
 ?>
 
-
-<form action="">
+<form action="../php/addTextCourse.php" method="POST">
 
     <label for="textbook">Choose a text book</label>
 
     <select name="textbook">
         <?php 
             foreach($txtBook as $x){
-                echo "<option value=" . $x['textISBN'] . ">" . $x['textTitle'] . "</option>";
+                echo "<option  value=" . $x['textISBN'] . ">" . $x['textTitle'] . "</option>";
             }
         ?>
     </select>
@@ -25,9 +26,18 @@ $courses = SelectAllCourse($conn);
     <select name="course">
         <?php 
             foreach($courses as $x){
-                echo "<option value=" . $x['coursePrefix'] . ">" . $x['coursePrefix'] .  $x['courseNumber'] . ", Section:" . $x['courseSection'] . ", Term:" . $x['courseTerm'] . "</option>";
+                echo "<option  value=" . $x['coursePrefix'] .",".  $x['courseNumber'] . "," . $x['courseSection'] . "," . $x['courseTerm'] .">" . $x['coursePrefix'] .  $x['courseNumber'] . ", Section:" . $x['courseSection'] . ", Term:" . $x['courseTerm'] . "</option>";
             }
         ?>
     </select>
 
+    <button type="submit">Enter</button>
+
 </form>
+<?php
+    if(isset($_GET["Status"])){
+        if($_GET["Status"] == "success"){
+            echo "<h1> You successfully submitted! </h1>";
+        }
+    }
+?>
