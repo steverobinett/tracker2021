@@ -1,5 +1,22 @@
 <?php
 
+function VerifyUser($userEmail, $password) {
+    require('dbConnect.php');
+    $conn = getConnection();
+
+    $status = 404;
+    $query = "SELECT `userPassword` FROM `USER` WHERE `userEmail`=$userEmail"; //email = email that was submitted
+    $result = $conn->query($query);
+    echo var_dump($result);
+    if($result->num_rows === 0) {
+        $status = 2; //User not found
+    } else if(sha1($password) !== $query[1]) {
+        $status = 1; //Password is incorrect
+    } else {
+        $status = 0; //Everything is good
+    }
+    return $status;
+}
 
 function SelectSingleTextbook($isbn) {
     return null;

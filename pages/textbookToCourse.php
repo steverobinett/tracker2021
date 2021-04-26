@@ -34,3 +34,10 @@ $courses = SelectAllCourse($db);
     <button type="submit">Enter</button>
 
 </form>
+<?php
+    if(isset($_GET["Status"])){
+        if($_GET["Status"] == "success"){
+            echo "<h1> You successfully submitted! </h1>";
+        }
+    }
+?>
