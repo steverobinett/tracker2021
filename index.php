@@ -1,16 +1,17 @@
 <?php
-    session_start();
-    if(!isset($_SESSION["userFirst"])) {
-        //if user is not logged in
-        header('Location: http://dev.stevenrobinett.com/pages/login.html');
-    } else {
-        //Load Page
-        echo "Welcome ". $_SESSION['userFirst']. ", you are logged in.";
-    }
+session_start();
+if (!isset($_SESSION["userFirst"])) {
+    //if user is not logged in
+    header('Location: http://dev.stevenrobinett.com/pages/login.html');
+} else {
+    //Load Page
+    echo "Welcome " . $_SESSION['userFirst'] . ", you are logged in.";
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+
 <body>
     <div class="box has-background-grey-light p-3 mb-0 $radius-large">
         <h2 class="title is-2">Textbook Tracker 2021</h2>
@@ -32,14 +34,24 @@
         <a class="button is-link" id="registerButton" href="pages/register.php">Register</a>
     </div>
 
+    <div>
+        <h6 class="subtitle is-6">Report Pages</h6>
+    </div>
+    <div class="buttons">
+        <a class="button is-link" id="loginButton" href="pages/termReport.php">Term Report</a>
+        <a class="button is-link" id="registerButton" href="pages/courseReport.php">Course Report</a>
+        <a class="button is-link" id="registerButton" href="pages/textbookReport.php">Textbook Report</a>
+    </div>
+
     <?php
     // Allows SESSION varaibles to be called in JS, may be a better way but it works ftm
-        echo '<input type="hidden" id="userFirst" value="'.$_SESSION['userFirst'].'">';
-        echo '<input type="hidden" id="sessionCreate" value="'.$_SESSION['createSuccess'].'">';
-        echo '<input type="hidden" id="sessionReturn" value="'.$_SESSION['returnSuccess'].'">';
+    echo '<input type="hidden" id="userFirst" value="' . $_SESSION['userFirst'] . '">';
+    echo '<input type="hidden" id="sessionCreate" value="' . $_SESSION['createSuccess'] . '">';
+    echo '<input type="hidden" id="sessionReturn" value="' . $_SESSION['returnSuccess'] . '">';
     ?>
 
     <script src="js/index.js"></script>
 
 </body>
+
 </html>
