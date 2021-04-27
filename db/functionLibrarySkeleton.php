@@ -4,18 +4,19 @@ function VerifyUser($userEmail, $password) {
     require('dbConnect.php');
     $conn = getConnection();
 
-    $status = 404;
-    $query = "SELECT `userPassword` FROM `USER` WHERE `userEmail`=$userEmail"; //email = email that was submitted
-    $result = $conn->query($query);
-    echo var_dump($result);
-    if($result->num_rows === 0) {
+    $query = $conn->query("SELECT `userPassword`, `userFirst` FROM USER WHERE `userEmail` = \"$userEmail\""); //email = email that was submitted
+    $data = $query->fetch_array();
+    /* echo $data[0]."<br>";
+    echo sha1($password, false)."<br>"; */
+    if($data->num_rows === 0) {
         $status = 2; //User not found
-    } else if(sha1($password) !== $query[1]) {
+    } else if(sha1($password) !== $data[0]) {
         $status = 1; //Password is incorrect
     } else {
         $status = 0; //Everything is good
     }
-    return $status;
+    $result = array($status, $data[1]);
+    return $result;
 }
 
 function SelectSingleTextbook($isbn) {
@@ -31,9 +32,9 @@ function SelectAllTextbook($db) {
 
     $query = "SELECT * FROM `TEXTBOOK`";
 
-    $result = $db->query($query);
+    $data = $db->query($query);
 
-    while($row = $result->fetch_array()) {
+    while($row = $data->fetch_array()) {
         $Courses[] = $row;
     }
 
@@ -67,9 +68,9 @@ function SelectAllCourse($db) {
 
     $query = "SELECT * FROM `COURSE`";
     
-    $result = $db->query($query);
+    $data = $db->query($query);
 
-    while($row = $result->fetch_array()) {
+    while($row = $data->fetch_array()) {
         $Courses[] = $row;
     }
 
@@ -119,7 +120,7 @@ function InsertIntoCourseTextbook($db, $isbn , $prefix , $courseNum , $courseSec
     $stmt = $db->prepare($query);
     $stmt->bind_param('ssssiii', $isbn, $prefix, $courseNum,  $courseSec, $courseTerm,$Req,$useNew);
 
-    $result = $stmt->execute();
+    $data = $stmt->execute();
 
 }
 
@@ -128,6 +129,6 @@ function InsertTextbook($isbn, $title, $author, $edition, $publisher, $format) {
     $query = "INSERT INTO TEXTBOOK VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ssssss', $isbn, $title, $author, $edition, $publisher, $format);
-    $result = $stmt->execute() or trigger_error("Failed to add textbook to the database. Error: ".$conn->error);
+    $data = $stmt->execute() or trigger_error("Failed to add textbook to the database. Error: ".$conn->error);
 }
 
