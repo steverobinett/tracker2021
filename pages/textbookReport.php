@@ -14,35 +14,29 @@ include ("../db/reportLibrary.php");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Term Report</title>
+    <title>Textbook Report</title>
 </head>
 <body>
 <!--TODO: Make pretty-->
-    <h1>Have a report by term!</h1>
+    <h1>Have a report by textbook!</h1>
     
-    <form method="post" action="termReport.php" id="selectTerm">
-    <label for="term">Term: </label>
-    <select type="dropdown" id = "term" name="term">
+    <form method="post" action="textbookReport.php" id="selectTextbook">
+    <label for="isbn">ISBN: </label>
+    <input type="text" id = "isbn" name="isbn"></input>
+    <button type="submit" form="selectTextbook" id="button" value="submit">Go</button>
+    </form>
 <?php
     $conn = getConnection();
-    $dropdownData = SelectAllTerm($conn);
-    $dropdownData->bind_result($termID, $termName);
-    echo '<option></option>';
-    while($dropdownData->fetch()) {
-    echo '<option value="'.$termID.'">'.$termName.'</option>';
-    }
+    $isbnEntry = trim(stripslashes(htmlspecialchars($_POST['isbn'])));
+    $isbnStrip = str_replace("-","",$isbnEntry);
 
-    echo '</select>';
-    echo '</form>';
-    echo '<button type="submit" form="selectTerm" id="button" value="submit">Go</button>';
-
-    $reportData = ReportByTerm($conn, $_POST['term']);
+    $reportData = ReportByTextbook($conn, $isbnStrip);
     $reportData->bind_result($isbn, $prefix, $num, $sec, $term, $req, $usenew, $fac);
 
 //TODO: Include textbook title/author
 //TODO: Make table hidden until user clicks submit button
     echo '<div class="tablewrap">';
-        echo '<table id="termreport" class="table is-striped is-narrow">';
+        echo '<table id="textbookreport" class="table is-striped is-narrow">';
             echo '<tr class="thead"><th>ISBN</th><th>Course Prefix</th><th>Number</th><th>Section</th><th>Required?</th><th>Use Newer?</th><th>Faculty</th>';
             while($reportData->fetch()) {
                 echo '<tr class="tbody">';

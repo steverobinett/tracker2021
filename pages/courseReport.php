@@ -14,42 +14,54 @@ include ("../db/reportLibrary.php");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Term Report</title>
+    <title>Course Report</title>
 </head>
 <body>
 <!--TODO: Make pretty-->
-    <h1>Have a report by term!</h1>
+    <h1>Have a report by course!</h1>
     
-    <form method="post" action="termReport.php" id="selectTerm">
-    <label for="term">Term: </label>
-    <select type="dropdown" id = "term" name="term">
+    <form method="post" action="courseReport.php" id="selectCourse">
+    <label for="prefix">Course Prefix: </label>
+    <select type="dropdown" id = "prefix" name="prefix">
 <?php
+//TODO: Remove duplicate values returned for dropdown query
+//TODO: Align processes for handling php/sql queries -- SelectAllCourse returns an array, while SelectAllTerm returns a statement object. Both work, but have to be handled differently.
+
     $conn = getConnection();
-    $dropdownData = SelectAllTerm($conn);
-    $dropdownData->bind_result($termID, $termName);
+    $dropdownData = SelectAllCourse($conn);
     echo '<option></option>';
-    while($dropdownData->fetch()) {
-    echo '<option value="'.$termID.'">'.$termName.'</option>';
+    foreach ($dropdownData as $i) {
+    echo '<option value="'.$i['coursePrefix'].'">'.$i['coursePrefix'].'</option>';
     }
-
     echo '</select>';
+    echo '<label for="num">Course Number: </label>';
+    echo '<select type="dropdown" id="num" name = "num">';
+    echo '<option></option>';
+    foreach ($dropdownData as $i) {
+        echo '<option value="'.$i['courseNumber'].'">'.$i['courseNumber'].'</option>';
+        }
+    echo '</select>';
+    echo '<button type="submit" form="selectCourse" id="button" value="submit">Go</button>';
     echo '</form>';
-    echo '<button type="submit" form="selectTerm" id="button" value="submit">Go</button>';
 
-    $reportData = ReportByTerm($conn, $_POST['term']);
+    $prefix = $_POST['prefix'];
+    $num = $_POST['num'];
+
+    $reportData = ReportByCourse($conn, $prefix, $num);
     $reportData->bind_result($isbn, $prefix, $num, $sec, $term, $req, $usenew, $fac);
 
 //TODO: Include textbook title/author
 //TODO: Make table hidden until user clicks submit button
     echo '<div class="tablewrap">';
-        echo '<table id="termreport" class="table is-striped is-narrow">';
-            echo '<tr class="thead"><th>ISBN</th><th>Course Prefix</th><th>Number</th><th>Section</th><th>Required?</th><th>Use Newer?</th><th>Faculty</th>';
+        echo '<table id="coursereport" class="table is-striped is-narrow">';
+            echo '<tr class="thead"><th>ISBN</th><th>Course Prefix</th><th>Number</th><th>Section</th><th>Term</th><th>Required?</th><th>Use Newer?</th><th>Faculty</th>';
             while($reportData->fetch()) {
                 echo '<tr class="tbody">';
                     echo '<td>'.$isbn.'</td>';
                     echo '<td>'.$prefix.'</td>';
                     echo '<td>'.$num.'</td>';
                     echo '<td>'.$sec.'</td>';
+                    echo '<td>'.$term.'</td>';
                     echo '<td>'.$req.'</td>';
                     echo '<td>'.$usenew.'</td>';
                     echo '<td>'.$fac.'</td>';

@@ -39,5 +39,8 @@ $courses = SelectAllCourse($db);
         if($_GET["Status"] == "success"){
             echo "<h1> You successfully submitted! </h1>";
         }
+        if($_GET["Status"] == "exists"){
+            echo "<h1> This association already exists </h1>";
+        }
     }
 ?>
