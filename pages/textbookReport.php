@@ -17,12 +17,12 @@ include ("../db/reportLibrary.php");
     <title>Textbook Report</title>
 </head>
 <body>
-<!--TODO: Make pretty-->
-    <h1>Have a report by textbook!</h1>
+
+<h1 class="title is-3">Report: Search by Textbook</h1>
     
     <form method="post" action="textbookReport.php" id="selectTextbook">
     <label for="isbn">ISBN: </label>
-    <input type="text" id = "isbn" name="isbn"></input>
+    <input type="text" id = "isbn" name="isbn"></input><br>
     <button type="submit" form="selectTextbook" id="button" value="submit">Go</button>
     </form>
 <?php

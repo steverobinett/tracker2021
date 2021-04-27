@@ -17,8 +17,8 @@ include ("../db/reportLibrary.php");
     <title>Course Report</title>
 </head>
 <body>
-<!--TODO: Make pretty-->
-    <h1>Have a report by course!</h1>
+
+<h1 class="title is-3">Report: Search by Course</h1>
     
     <form method="post" action="courseReport.php" id="selectCourse">
     <label for="prefix">Course Prefix: </label>
@@ -33,15 +33,15 @@ include ("../db/reportLibrary.php");
     foreach ($dropdownData as $i) {
     echo '<option value="'.$i['coursePrefix'].'">'.$i['coursePrefix'].'</option>';
     }
-    echo '</select>';
-    echo '<label for="num">Course Number: </label>';
+    echo '</select><br>';
+    echo '<label for="num">Course Number:'.' '.'</label>';
     echo '<select type="dropdown" id="num" name = "num">';
     echo '<option></option>';
     foreach ($dropdownData as $i) {
         echo '<option value="'.$i['courseNumber'].'">'.$i['courseNumber'].'</option>';
         }
-    echo '</select>';
-    echo '<button type="submit" form="selectCourse" id="button" value="submit">Go</button>';
+    echo '</select><br>';
+    echo '<button type="submit" class="submit" form="selectCourse" id="button" value="submit">Go</button>';
     echo '</form>';
 
     $prefix = $_POST['prefix'];
@@ -52,6 +52,7 @@ include ("../db/reportLibrary.php");
 
 //TODO: Include textbook title/author
 //TODO: Make table hidden until user clicks submit button
+    
     echo '<div class="tablewrap">';
         echo '<table id="coursereport" class="table is-striped is-narrow">';
             echo '<tr class="thead"><th>ISBN</th><th>Course Prefix</th><th>Number</th><th>Section</th><th>Term</th><th>Required?</th><th>Use Newer?</th><th>Faculty</th>';

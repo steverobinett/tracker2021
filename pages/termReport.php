@@ -17,8 +17,8 @@ include ("../db/reportLibrary.php");
     <title>Term Report</title>
 </head>
 <body>
-<!--TODO: Make pretty-->
-    <h1>Have a report by term!</h1>
+
+<h1 class="title is-3">Report: Search by Term</h1>
     
     <form method="post" action="termReport.php" id="selectTerm">
     <label for="term">Term: </label>
@@ -32,9 +32,9 @@ include ("../db/reportLibrary.php");
     echo '<option value="'.$termID.'">'.$termName.'</option>';
     }
 
-    echo '</select>';
-    echo '</form>';
+    echo '</select><br>';
     echo '<button type="submit" form="selectTerm" id="button" value="submit">Go</button>';
+    echo '</form>';
 
     $reportData = ReportByTerm($conn, $_POST['term']);
     $reportData->bind_result($isbn, $prefix, $num, $sec, $term, $req, $usenew, $fac);
