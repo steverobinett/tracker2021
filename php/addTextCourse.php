@@ -2,6 +2,13 @@
 require ("../db/functionLibrarySkeleton.php");
 require ("../db/dbConnect.php");
 
+if(isset($_POST["coursefilter"])){
+    $filter = $_POST["coursefilter"];
+    $value = $_POST["courseValue"];
+    header("Location: http://dev.stevenrobinett.com/pages/textbookToCourse.php?courseFilter=" . $filter . "&courseValue=". $value);
+    exit;
+}
+
 $conn = getConnection();
 
 $text = $_POST['textbook'];

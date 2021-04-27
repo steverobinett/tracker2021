@@ -1,7 +1,22 @@
 <?php
 include "../db/dbConnect.php";
 include "../db/functionLibrarySkeleton.php";
+ echo "<form action='../php/addTextCourse.php' method='POST'>";
+ echo "<h4>Add search filter</h4>
+        <label for='coursefilter'> Filter courses <label>
+        <select name='coursefilter'>
+            <option value = 'all'>all</option>
+            <option value = 'prefix'>prefix</option>
+            <option value = 'number'>number</option>
+            <option value = 'section'>section</option>
+        </select>
 
+        <label for='courseValue'>Enter filter value</label>
+        <input name='courseValue'></input>
+        
+        <button type='submit'>Enter</button>
+        ";
+ echo "</form>";
 
 $db = getConnection();
 $txtBook = SelectAllTextbook($db);
