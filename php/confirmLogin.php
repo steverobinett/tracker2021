@@ -6,11 +6,11 @@
         $userPass = $_POST['password'];
 
         require('../db/functionLibrarySkeleton.php');
-        $status = VerifyUser($userEmail, $userPass);
+        $result = VerifyUser($userEmail, $userPass);
 
-        switch ($status) {
+        switch ($result[0]) {
             case 0:
-                $_SESSION['userFirst'] = $userFirst;
+                $_SESSION['userFirst'] = $result[1];
                 header('Location: http://dev.stevenrobinett.com/index.php');
             break;
             case 1:
@@ -20,12 +20,12 @@
                 echo "User not found";
             break;
             default:
-                echo "VerifyUser ran into an issue: $status";
+                echo "VerifyUser ran into an issue: $result";
         break;
         }
     }
     else {
         echo "Error";
     }
-    echo "<br>Done";
+    exit();
 ?>
