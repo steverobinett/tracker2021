@@ -2,7 +2,7 @@
 include "../db/dbConnect.php";
 include "../db/functionLibrarySkeleton.php";
 
-echo "<h1>Welcome to my page </h1>";
+
 $db = getConnection();
 $txtBook = SelectAllTextbook($db);
 $courses = SelectAllCourse($db);
