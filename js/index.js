@@ -3,7 +3,7 @@ window.addEventListener("load", checkUser, false);
 function checkUser() {
     var returned = document.getElementById("sessionReturn").value;
     var created = document.getElementById("sessionCreate").value;
-    if(returned == true) {
+    if(returned == "1") {
         userReturned();
     }
     else if(created == true) {
@@ -26,7 +26,7 @@ function userCreated() {
 
 function userReturned() {
     var sessionReturn = document.getElementById("sessionReturn").value;
-    var sessionFirst = document.getElementById("sessionFirst").value;
+    var sessionFirst = document.getElementById("userFirst").value;
     var loginButton = document.getElementById("loginButton");
     if (sessionReturn == true) {
         loginButton.innerHTML = "Hey, " + sessionFirst + "!";
