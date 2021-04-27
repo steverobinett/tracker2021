@@ -11,6 +11,7 @@
         switch ($result[0]) {
             case 0:
                 $_SESSION['userFirst'] = $result[1];
+                $_SESSION['returnSuccess'] = true;
                 header('Location: http://dev.stevenrobinett.com/index.php');
             break;
             case 1:
