@@ -4,5 +4,5 @@
 <?php
     $_SESSION = array();
     session_destroy();
-    echo '<a href="../index.php">Home</a>';
+    header('Location: http://dev.stevenrobinett.com/index.php');
 ?>
