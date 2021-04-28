@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "stevenrobinett.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "TrackerTester",
+            "database": "srobinet_Tracker2000",
+            "username": "srobinet_TrackerDev",
+            "password": "imRL10-20bye"
+        }
+    ]
+}
