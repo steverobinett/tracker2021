@@ -1,17 +1,10 @@
 <?php
     session_start();
+    include "../db/dbConnect.php";
 ?>
 
 <?php
-        $server = 'stevenrobinett.com';
-        $user = 'srobinet_TrackerDev';
-        $password = 'imRL10-20bye';
-        $database = 'srobinet_Tracker2000';
-
-        $conn = new mysqli($server, $user, $password, $database);
-        if(!$conn){
-             die('Connect failed'.mysqli_connect_error());
-        }
+        $conn = getConnection();
 
         $userEmail = $_POST['userEmail'];
         // $userPass = password_hash($_POST['password1'], PASSWORD_DEFAULT);

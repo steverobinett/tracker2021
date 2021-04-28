@@ -27,7 +27,7 @@ include ("../db/reportLibrary.php");
     $conn = getConnection();
     $dropdownData = SelectAllTerm($conn);
     $dropdownData->bind_result($termID, $termName);
-    echo '<option></option>';
+    echo '<option value="none" selected disabled hidden>Select Term</option>';
     while($dropdownData->fetch()) {
     echo '<option value="'.$termID.'">'.$termName.'</option>';
     }
