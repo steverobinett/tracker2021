@@ -1,4 +1,5 @@
 <?php
+session_start();
 require ("../db/functionLibrarySkeleton.php");
 require ("../db/dbConnect.php");
 

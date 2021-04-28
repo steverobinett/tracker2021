@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../db/dbConnect.php";
 include "../db/functionLibrarySkeleton.php";
  echo "<form action='../php/addTextCourse.php' method='POST'>";
