@@ -1,8 +1,5 @@
 <?php 
     session_start();
-?>
-
-<?php
     require '../db/dbConnect.php';
     $conn = getConnection();
 
@@ -18,8 +15,5 @@
     if($insertResult) {
         $_SESSION['textSubmitSuccess'] = true;
         $_SESSION['prevISBN'] = $textISBN;
-        // $link = "http://dev.stevenrobinett.com/pages/textbook.php";
-        // echo "<a href='".$link."'>Textbook</a>";
-        // header('Location:http://dev.stevenrobinett.com/pages/textbook.php');
         echo "<script type='text/javascript'> document.location = '../pages/textbook.php'; </script>";
     }
