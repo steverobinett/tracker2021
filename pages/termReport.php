@@ -20,7 +20,7 @@ include ("../db/reportLibrary.php");
 <!--TODO: Make pretty-->
     <h1>Have a report by term!</h1>
     
-    <form method="post" action="termReport.php" id="selectTerm">
+    <form method="post" action="termReport.php" id="selectTerm" name="selectTerm">
     <label for="term">Term: </label>
     <select type="dropdown" id = "term" name="term">
 <?php
@@ -33,8 +33,15 @@ include ("../db/reportLibrary.php");
     }
 
     echo '</select>';
+    echo '<input type="hidden" id="term-hidden" name="term-hidden">';
     echo '</form>';
     echo '<button type="submit" form="selectTerm" id="button" value="submit">Go</button>';
+
+    $termHead = $_POST['term-hidden'];
+
+$testfile = fopen("testfile.txt", "w");
+fwrite($testfile, $termHead);
+fclose($testfile);
 
     $reportData = ReportByTerm($conn, $_POST['term']);
     $reportData->bind_result($isbn, $prefix, $num, $sec, $term, $req, $usenew, $fac);
@@ -42,6 +49,9 @@ include ("../db/reportLibrary.php");
 //TODO: Include textbook title/author
 //TODO: Make table hidden until user clicks submit button
     echo '<div class="tablewrap">';
+        echo '<div class="container">';
+            echo '<h3 class="container title is-3" id="tableheader">'.$termHead.'</h3>';
+        echo '</div>';
         echo '<table id="termreport" class="table is-striped is-narrow">';
             echo '<tr class="thead"><th>ISBN</th><th>Course Prefix</th><th>Number</th><th>Section</th><th>Required?</th><th>Use Newer?</th><th>Faculty</th>';
             while($reportData->fetch()) {
@@ -59,4 +69,6 @@ include ("../db/reportLibrary.php");
     echo '</div>';
 
 ?>
+<script src="../js/reports.js"></script>
 </body>
+</html>
