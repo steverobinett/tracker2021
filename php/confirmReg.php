@@ -18,6 +18,7 @@
         if($insertResult) {
             $_SESSION['userFirst'] = $userFirst;
             $_SESSION['createSuccess'] = true;
+            $_SESSION['role'] = $_POST['userRole'];
             echo '<a href="../index.php">Home</a>';
             echo '<script>alert("Registration Successful!")</script>';
         }
