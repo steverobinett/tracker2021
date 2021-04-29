@@ -13,24 +13,20 @@ function checkUser() {
 
 function userCreated() {
     var sessionCreate = document.getElementById("sessionCreate").value;
-    var sessionFirst = document.getElementById("userFirst").value;
     var loginButton = document.getElementById("loginButton");
     var registerButton = document.getElementById("registerButton");
     if (sessionCreate == true) {
-        loginButton.innerHTML = "Hey, " + sessionFirst + "!";
-        loginButton.disabled = true;
+        loginButton.remove();
         registerButton.innerHTML = "Logout";
-        registerButton.setAttribute("href", "php/logout.php")
+        registerButton.setAttribute("href", "php/logout.php");
     }
 }
 
 function userReturned() {
     var sessionReturn = document.getElementById("sessionReturn").value;
-    var sessionFirst = document.getElementById("sessionFirst").value;
     var loginButton = document.getElementById("loginButton");
     if (sessionReturn == true) {
-        loginButton.innerHTML = "Hey, " + sessionFirst + "!";
-        loginButton.disabled = true;
+        loginButton.remove();
         registerButton.innerHTML = "Logout";
         registerButton.setAttribute("href", "php/logout.php");
     }
