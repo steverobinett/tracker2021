@@ -56,7 +56,7 @@
             echo "<a class='button is-link' id='loginButton' href='pages/textbookToCourse.php'>Add a textbook to a course</a>";
         }
         elseif($_SESSION["role"] == "3"){
-            echo "<a class='button is-link' id='loginButton' href='pages/textbook.php'>Add a textbook</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/textbookReport.php'>Text book report</a>";
             echo "<a class='button is-link' id='loginButton' href='pages/termReport.php'>Term Report</a>";
             echo "<a class='button is-link' id='loginButton' href='pages/courseReport.php'>Course Report</a>";
         }
