@@ -4,7 +4,7 @@ function VerifyUser($userEmail, $password) {
     require('dbConnect.php');
     $conn = getConnection();
 
-    $query = $conn->query("SELECT `userPassword`, `userFirst` FROM USER WHERE `userEmail` = \"$userEmail\""); //email = email that was submitted
+    $query = $conn->query("SELECT `userPassword`, `userFirst`, `userRole` FROM USER WHERE `userEmail` = \"$userEmail\""); //email = email that was submitted
     $data = $query->fetch_array();
     /* echo $data[0]."<br>";
     echo sha1($password, false)."<br>"; */
@@ -15,7 +15,7 @@ function VerifyUser($userEmail, $password) {
     } else {
         $status = 0; //Everything is good
     }
-    $result = array($status, $data[1]);
+    $result = array($status, $data[1], $data[2]);
     return $result;
 }
 

@@ -37,13 +37,35 @@
         echo '<input type="hidden" id="userFirst" value="'.$_SESSION['userFirst'].'">';
         echo '<input type="hidden" id="sessionCreate" value="'.$_SESSION['createSuccess'].'">';
         echo '<input type="hidden" id="sessionReturn" value="'.$_SESSION['returnSuccess'].'">';
-        //var_dump($_SESSION);
     ?>
-    <a class="button is-link" id="loginButton" href="pages/textbook.php">Add a textbook</a>
-    <a class="button is-link" id="loginButton" href="pages/termReport.php">Term Report</a>
-    <a class="button is-link" id="loginButton" href="pages/courseReport.php">Course Report</a>
-    <a class="button is-link" id="loginButton" href="pages/textbookReport.php">Text book report</a>
-    <a class="button is-link" id="loginButton" href="pages/textbookToCourse.php">Add a textbook to a course</a>
+
+    <?php
+        if($_SESSION["role"] == "1"){
+            echo "<a class='button is-link' id='loginButton' href='#'>Add User</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/textbook.php'>Add a textbook</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/termReport.php'>Term Report</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/courseReport.php'>Course Report</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/textbookReport.php'>Text book report</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/textbookToCourse.php'>Add a textbook to a course</a>";
+        }
+        elseif($_SESSION["role"] == "2"){
+            echo "<a class='button is-link' id='loginButton' href='pages/textbook.php'>Add a textbook</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/termReport.php'>Term Report</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/courseReport.php'>Course Report</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/textbookReport.php'>Text book report</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/textbookToCourse.php'>Add a textbook to a course</a>";
+        }
+        elseif($_SESSION["role"] == "3"){
+            echo "<a class='button is-link' id='loginButton' href='pages/textbook.php'>Add a textbook</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/termReport.php'>Term Report</a>";
+            echo "<a class='button is-link' id='loginButton' href='pages/courseReport.php'>Course Report</a>";
+        }
+    ?>
+    
+    
+    
+    
+    
 
 
     <script src="js/index.js"></script>
