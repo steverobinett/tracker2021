@@ -7,11 +7,13 @@
 
         require('../db/functionLibrarySkeleton.php');
         $result = VerifyUser($userEmail, $userPass);
+        $roleName = getUserRoleName(intval($result[2]));
 
         switch ($result[0]) {
             case 0:
                 $_SESSION['userFirst'] = $result[1];
                 $_SESSION['role'] = $result[2];
+                $_SESSION['roleName'] = $roleName;
                 header('Location: http://dev.stevenrobinett.com/index.php');
             break;
             case 1:
