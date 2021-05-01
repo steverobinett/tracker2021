@@ -19,6 +19,21 @@ function VerifyUser($userEmail, $password) {
     return $result;
 }
 
+function getUserRoleName($role) {
+
+    //require('dbConnect.php');
+
+    $conn = getConnection();
+    $query = $conn->query("SELECT `roleDesc` FROM ROLE WHERE `roleId` = \"$role\"");
+    $data = $query->fetch_array();
+    if($data->num_rows === 0) {
+        return "Error";
+    } else {
+        return $data[0];
+    }
+    
+}
+
 function SelectSingleTextbook($isbn) {
     return null;
 }
