@@ -14,6 +14,7 @@
                 $_SESSION['userFirst'] = $result[1];
                 $_SESSION['role'] = $result[2];
                 $_SESSION['roleName'] = $roleName;
+                $_SESSION['createSuccess'] = true;
                 header('Location: http://dev.stevenrobinett.com/index.php');
             break;
             case 1:
