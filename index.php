@@ -5,7 +5,7 @@
         header('Location: http://dev.stevenrobinett.com/pages/login.html');
     } else {
         //Load Page
-        echo "Welcome ". $_SESSION['userFirst']. ", you are logged in.";
+        echo "Welcome ". $_SESSION['userFirst']. ", you are logged in as ". $_SESSION['roleName'];
     }
 ?>
 
