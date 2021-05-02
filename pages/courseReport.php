@@ -40,7 +40,7 @@ include ("../db/reportLibrary.php");
     foreach ($dropdownData as $i) {
         echo '<option value="'.$i['courseNumber'].'">'.$i['courseNumber'].'</option>';
         }
-    echo '</select><br>'';
+    echo '</select><br>';
     echo '<input type="hidden" id="course-hidden" name="course-hidden">';
     echo '<button type="submit" form="selectCourse" id="button" value="submit">Go</button>';
     echo '</form><br>';
