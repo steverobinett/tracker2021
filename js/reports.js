@@ -4,5 +4,10 @@ function showTableHeader() {
     hiddenTerm.value = termText;
 }
 
-document.getElementById("term").addEventListener("click", showTableHeader, false);
+function showCourseHeader() {
+    var courseText = document.selectCourse.prefix.options[document.selectCourse.prefix.selectedIndex].text + " " + document.selectCourse.num.options[document.selectCourse.num.selectedIndex].text;
+    var hiddenCourse = document.getElementById("course-hidden");
+    hiddenCourse.value = courseText;
+}
+
 

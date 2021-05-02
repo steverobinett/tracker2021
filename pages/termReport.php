@@ -39,10 +39,6 @@ include ("../db/reportLibrary.php");
 
     $termHead = $_POST['term-hidden'];
 
-$testfile = fopen("testfile.txt", "w");
-fwrite($testfile, $termHead);
-fclose($testfile);
-
     $reportData = ReportByTerm($conn, $_POST['term']);
     $reportData->bind_result($isbn, $prefix, $num, $sec, $term, $req, $usenew, $fac);
 
@@ -50,7 +46,7 @@ fclose($testfile);
 //TODO: Make table hidden until user clicks submit button
     echo '<div class="tablewrap">';
         echo '<div class="container">';
-            echo '<h3 class="container title is-3" id="tableheader">'.$termHead.'</h3>';
+            echo '<h3 class="reporthead title is-3" id="tableheader">'.$termHead.'</h3>';
         echo '</div>';
         echo '<table id="termreport" class="table is-striped is-narrow">';
             echo '<tr class="thead"><th>ISBN</th><th>Course Prefix</th><th>Number</th><th>Section</th><th>Required?</th><th>Use Newer?</th><th>Faculty</th>';
@@ -70,5 +66,6 @@ fclose($testfile);
 
 ?>
 <script src="../js/reports.js"></script>
+<script>document.getElementById("term").addEventListener("click", showTableHeader, false);</script>
 </body>
 </html>

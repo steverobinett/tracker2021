@@ -20,7 +20,7 @@ include ("../db/reportLibrary.php");
 <!--TODO: Make pretty-->
     <h1>Have a report by course!</h1>
     
-    <form method="post" action="courseReport.php" id="selectCourse">
+    <form method="post" action="courseReport.php" id="selectCourse" name="selectCourse">
     <label for="prefix">Course Prefix: </label>
     <select type="dropdown" id = "prefix" name="prefix">
 <?php
@@ -33,17 +33,19 @@ include ("../db/reportLibrary.php");
     foreach ($dropdownData as $i) {
     echo '<option value="'.$i['coursePrefix'].'">'.$i['coursePrefix'].'</option>';
     }
-    echo '</select>';
+    echo '</select><br>';
     echo '<label for="num">Course Number: </label>';
     echo '<select type="dropdown" id="num" name = "num">';
     echo '<option></option>';
     foreach ($dropdownData as $i) {
         echo '<option value="'.$i['courseNumber'].'">'.$i['courseNumber'].'</option>';
         }
-    echo '</select>';
+    echo '</select><br>'';
+    echo '<input type="hidden" id="course-hidden" name="course-hidden">';
     echo '<button type="submit" form="selectCourse" id="button" value="submit">Go</button>';
-    echo '</form>';
+    echo '</form><br>';
 
+    $reportHead = $_POST['course-hidden'];
     $prefix = $_POST['prefix'];
     $num = $_POST['num'];
 
@@ -53,6 +55,9 @@ include ("../db/reportLibrary.php");
 //TODO: Include textbook title/author
 //TODO: Make table hidden until user clicks submit button
     echo '<div class="tablewrap">';
+        echo '<div class="container">';
+            echo '<h3 class="reporthead title is-3" id="tableheader">'.$reportHead.'</h3>';
+        echo '</div>';
         echo '<table id="coursereport" class="table is-striped is-narrow">';
             echo '<tr class="thead"><th>ISBN</th><th>Course Prefix</th><th>Number</th><th>Section</th><th>Term</th><th>Required?</th><th>Use Newer?</th><th>Faculty</th>';
             while($reportData->fetch()) {
@@ -71,4 +76,6 @@ include ("../db/reportLibrary.php");
     echo '</div>';
 
 ?>
+<script src="../js/reports.js"></script>
+<script> document.getElementById("num").addEventListener("click", showCourseHeader, false);</script>
 </body>

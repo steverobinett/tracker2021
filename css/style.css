@@ -6,3 +6,9 @@ form{
 .no-display {
     display:none;
 }
+
+.reporthead {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
