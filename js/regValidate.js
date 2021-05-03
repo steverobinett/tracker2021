@@ -10,7 +10,7 @@ function validators() {
     var emailValid = emailValidate(email, emailArray);
     var passValid = passwordValidate(pass1, pass2);
     var nameValid = nameValidate(fname, lname);
-    if (emailValid == true && passValid == true && nameValid == true && phoneValid == true) {
+    if (emailValid == true && passValid == true && nameValid == true) {
         validSubmit = true;
     }
     return validSubmit;
