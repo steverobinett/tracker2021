@@ -3,11 +3,11 @@
     require '../db/dbConnect.php';
     $conn = getConnection();
 
+//TODO: Move this function to a php validation/special_char library for cleaning up external inputs.
+//Expand to include: decode Unicode values for other common special chars, foreign language alpha
     function unfancy($fancy) {
         $fixes = false;
     
-//TODO: Move this function to a php validation/special_char library for cleaning up external inputs.
-//Expand to include: decode Unicode values for other common special chars, foreign language alpha
         if($fixes === false) {
             $fixes = array (
                 json_decode('"\u201C"') => '"',     // left  double quotation mark
